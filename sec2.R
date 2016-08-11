@@ -184,12 +184,4 @@ colnames(st3)[2]<-'tic'
 if(length(unique(st3$tic))!=nrow(st3)){print('Does not pass uniqueness test')}else{print('Passes uniqueness test')}
 st3<-st3[order(-st3$score),]
 print(head(st3,20))
-write.csv(st3,'/home/puru/code/clojure_projects/clojure-download2/investableUniverse.csv',row.names=FALSE)
-
-
-res<-try(x<-getSymbols('aapl',auto.assign=F,from=date_-100,to=date_))
-optionDates<-rev(index(x))[1:60]
-x<-optionDates[1]
-optionDates2<-sapply(optionDates,function(x){gsub("-", "",as.character(x))})
-write.table(as.character(optionDates2),'/home/puru/code/clojure_projects/clojure-download2/dates.txt',row.names=FALSE,col.names = FALSE)
-
+write.csv(st3,'investableUniverse.csv',row.names=FALSE)
