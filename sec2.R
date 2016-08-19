@@ -102,12 +102,12 @@ adv<-function(tic,GG){
   
   if( length(lastret)!= (GG+1) ){return(dummy)}
   a=sum(as.numeric(tail(x,1)$returns))
-  b=sum(as.numeric(tail(x,3)$returns))
-  c=sum(as.numeric(tail(x,5)$returns))
+  b=sum(as.numeric(tail(x,5)$returns))
+  c=sum(as.numeric(tail(x,9)$returns))
 
   e=sum(as.numeric(tail(x,1)$adv.ratio))/1
-  f=sum(as.numeric(tail(x,3)$adv.ratio))/3
-  g=sum(as.numeric(tail(x,5)$adv.ratio))/5
+  f=sum(as.numeric(tail(x,5)$adv.ratio))/5
+  g=sum(as.numeric(tail(x,9)$adv.ratio))/9
   
 
  
