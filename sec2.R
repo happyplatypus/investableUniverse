@@ -102,8 +102,8 @@ adv<-function(tic,GG){
   
   if( length(lastret)!= (GG+1) ){return(dummy)}
   a=sum(as.numeric(tail(x,1)$returns))
-  b=sum(as.numeric(tail(x,4)$returns))
-  c=sum(as.numeric(tail(x,9)$returns))
+  b=sum(as.numeric(tail(x,3)$returns))
+  c=sum(as.numeric(tail(x,5)$returns))
 
   e=sum(as.numeric(tail(x,1)$adv.ratio))/1
   f=sum(as.numeric(tail(x,3)$adv.ratio))/3
@@ -113,9 +113,9 @@ adv<-function(tic,GG){
  
   obj<-c(a,(b-a)/3,(c-(a+b))/5,e,f,g)
     
-  e=sum(as.numeric(tail(x,1)$adv.ratio))/1
-  f=sum(as.numeric(tail(x,3)$adv.ratio))/3
-  g=sum(as.numeric(tail(x,5)$adv.ratio))/5
+  #e=sum(as.numeric(tail(x,1)$adv.ratio))/1
+  #f=sum(as.numeric(tail(x,3)$adv.ratio))/3
+  #g=sum(as.numeric(tail(x,5)$adv.ratio))/5
   
   obj<-as.numeric(Map(function(x) round(x,2) ,obj))
   
@@ -131,7 +131,7 @@ st<-st[order(st$tic),]
 print("Running ADV check $10M $ per day cutoff and last return")
 #if(!missing(ticlist)){st<-st[st$tic %in% ticlist ,]}
 #x<-sapply(st$tic[1:10],adv,GG=GG)
-#st<-st[1:20,]
+#st<-st[1:50,]
 x<-sapply(st$tic,adv,GG=GG)
 #x1<-x
 x1<-data.frame(t(data.frame(x)))
