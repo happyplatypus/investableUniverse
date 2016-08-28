@@ -184,4 +184,5 @@ colnames(st3)[2]<-'tic'
 if(length(unique(st3$tic))!=nrow(st3)){print('Does not pass uniqueness test')}else{print('Passes uniqueness test')}
 st3<-st3[order(-st3$score),]
 print(head(st3,20))
-write.csv(st3,'investableUniverse.csv',row.names=FALSE)
+home=Sys.getenv("HOME")
+write.csv(st3,paste0(home,'/code/r_projects/investableUniverse/investableUniverse.csv'),row.names=FALSE)
