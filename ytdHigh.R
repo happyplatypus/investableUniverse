@@ -203,4 +203,4 @@ print(head(st3,20))
 
 #View((head(st3,20)))
 home=Sys.getenv("HOME")
-write.csv(st3,paste0(home,'/code/r_projects/investableUniverse/investableUniverse_highs.csv'),row.names=FALSE)
+write.csv(st3,paste0(home,'/code/r_projects/investableUniverse/investableUniverse.csv'),row.names=FALSE)
