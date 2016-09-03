@@ -122,7 +122,8 @@ adv<-function(tic,GG){
   obj<-as.numeric(Map(function(x) round(x,2) ,obj))
   N<-length(prices)
   ratio <- prices[N]/max(prices)
-  ifelse( ((adv>=as.numeric(args[2]))&(ratio>=args[3]) ) ,return(obj),return(dummy) )
+  obj<-mean(prices)/sqrt(var(prices))
+  ifelse( ((adv>=as.numeric(args[2])) ) ,return(obj),return(dummy) )
   #ifelse( ( (adv>=10)&(ratio>0.95)  ) ,return(obj),return(dummy) )
   
   
