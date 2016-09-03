@@ -88,15 +88,17 @@ adv<-function(tic,GG){
   if(class(res)[1]=='try-error'){return(list(dummy))}
   head(x)
   
+  all.prices<-as.numeric(x[,6])
+  
   ## this is 20 day adv
   ## this is 20 day adv
-  x_20<-tail(x,20)
-  adv<-floor(mean(as.numeric(x_20[,5]*x_20[,6])/1e6,na.rm=T))
+  x<-tail(x,20)
+  adv<-floor(mean(as.numeric(x[,5]*x[,6])/1e6,na.rm=T))
   
   
   
   
-  #x$adv.ratio<-floor(as.numeric(x[,5]*x[,6])/1e6)/adv
+  x$adv.ratio<-floor(as.numeric(x[,5]*x[,6])/1e6)/adv
   
   
   lastret<-( (as.numeric(x[,6]))-(as.numeric(x[,1])))/(as.numeric(x[,1]))
@@ -125,8 +127,8 @@ adv<-function(tic,GG){
   #g=sum(as.numeric(tail(x,5)$adv.ratio))/5
   
   obj<-as.numeric(Map(function(x) round(x,2) ,obj))
-  N<-length(prices)
-  ratio <- prices[N]/max(prices)
+  N<-length(all.prices)
+  ratio <- all.prices[N]/max(all.prices)
   ifelse( ((adv>=as.numeric(args[2]))&(ratio>=args[3]) ) ,return(obj),return(dummy) )
   #ifelse( ( (adv>=10)&(ratio>0.95)  ) ,return(obj),return(dummy) )
   
@@ -192,9 +194,10 @@ colnames(st3)[2]<-'tic'
 
 if(length(unique(st3$tic))!=nrow(st3)){print('Does not pass uniqueness test')}else{print('Passes uniqueness test')}
 st3<-st3[order(-st3$score),]
+print('final output...head')
 print(head(st3,20))
 
-print(tail(st3,20))
+#print(tail(st3,20))
 
 #View((head(st3,20)))
 home=Sys.getenv("HOME")
