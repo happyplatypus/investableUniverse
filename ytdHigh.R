@@ -102,6 +102,8 @@ adv<-function(tic,GG){
   
   
   lastret<-( (as.numeric(x[,6]))-(as.numeric(x[,1])))/(as.numeric(x[,1]))
+  #lastret<-( (as.numeric(x[,6]))-(as.numeric(x[,1])))/(as.numeric(x[,1]))
+  
   
   prices<-as.numeric(x[,6])
   
@@ -109,7 +111,7 @@ adv<-function(tic,GG){
   
   head(x)
   
-  if( length(lastret)!= (GG+1) ){return(dummy)}
+  if( length(all.prices)!= (GG+1) ){return(dummy)}
   a=sum(as.numeric(tail(x,1)$returns))
   b=sum(as.numeric(tail(x,5)$returns))
   c=sum(as.numeric(tail(x,9)$returns))
