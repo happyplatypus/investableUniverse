@@ -78,7 +78,7 @@ start_<-index(x)[1]
 GG<-length(lastret<-diff(log(as.numeric(x[,6]))))
 #dummy<-rep(0,GG)
 ##set standard
-tic='cy'
+tic='str'
 adv<-function(tic,GG){
   print(tic)
   #res<-try(x<-getSymbols(as.character(tic),auto.assign=F,from=date_-21,to=date_))
@@ -89,9 +89,13 @@ adv<-function(tic,GG){
   head(x)
   
   ## this is 20 day adv
-  adv<-floor(mean(as.numeric(x[,5]*x[,6])/1e6,na.rm=T))
+  x_20<-tail(x,20)
+  adv<-floor(mean(as.numeric(x_20[,5]*x_20[,6])/1e6,na.rm=T))
   
-  x$adv.ratio<-floor(as.numeric(x[,5]*x[,6])/1e6)/adv
+  #adv<-floor(mean(as.numeric(x[,5]*x[,6])/1e6,na.rm=T))
+  
+  
+  #x$adv.ratio<-floor(as.numeric(x[,5]*x[,6])/1e6)/adv
   
   
   lastret<-( (as.numeric(x[,6]))-(as.numeric(x[,1])))/(as.numeric(x[,1]))
@@ -122,6 +126,8 @@ adv<-function(tic,GG){
   obj<-as.numeric(Map(function(x) round(x,2) ,obj))
   N<-length(prices)
   ratio <- prices[N]/max(prices)
+  
+  prices<-tail(prices,40)
   obj<-mean(prices)/sqrt(var(prices))
   ifelse( ((adv>=as.numeric(args[2])) ) ,return(obj),return(dummy) )
   #ifelse( ( (adv>=10)&(ratio>0.95)  ) ,return(obj),return(dummy) )

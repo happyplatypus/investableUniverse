@@ -89,9 +89,14 @@ adv<-function(tic,GG){
   head(x)
   
   ## this is 20 day adv
-  adv<-floor(mean(as.numeric(x[,5]*x[,6])/1e6,na.rm=T))
+  ## this is 20 day adv
+  x_20<-tail(x,20)
+  adv<-floor(mean(as.numeric(x_20[,5]*x_20[,6])/1e6,na.rm=T))
   
-  x$adv.ratio<-floor(as.numeric(x[,5]*x[,6])/1e6)/adv
+  
+  
+  
+  #x$adv.ratio<-floor(as.numeric(x[,5]*x[,6])/1e6)/adv
   
   
   lastret<-( (as.numeric(x[,6]))-(as.numeric(x[,1])))/(as.numeric(x[,1]))
