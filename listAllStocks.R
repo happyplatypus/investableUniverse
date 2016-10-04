@@ -120,8 +120,8 @@ adv<-function(tic,GG){
   obj<-as.numeric(Map(function(x) round(x,2) ,obj))
   
   
-  #ifelse(adv>=as.numeric(args[2]),return(obj),return(dummy) )
-  ifelse(adv>=10,return(obj),return(dummy) )
+  ifelse(adv>=as.numeric(args[2]),return(obj),return(dummy) )
+  #ifelse(adv>=10,return(obj),return(dummy) )
   
 }
 
