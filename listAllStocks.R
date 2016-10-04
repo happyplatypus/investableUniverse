@@ -19,7 +19,7 @@ print('<> mcmillion advmillion (cutoffs) ')
 ### date_ is the date_ on which you want the return and abnormal volume ranking
 st<-stockSymbols(exchange = c("NASDAQ", "NYSE","NYSEMKT"),sort.by = c("Exchange", "Symbol"), quiet = FALSE)
 # st[st$tic=='spy','Sector']<-'Needed'   ## otherwise thrown out
-st<-st[-c( intersect(         which(is.na(st$Sector)),which(is.na(st$Industry))              )) , ]
+#st<-st[-c( intersect(         which(is.na(st$Sector)),which(is.na(st$Industry))              )) , ]
 st<-st[!is.na(st$LastSale),]
 st<-st[!is.na(st$MarketCap),]
 #st<-st[st$LastSale>=5,]
