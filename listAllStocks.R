@@ -76,7 +76,7 @@ start_<-index(x)[1]
 GG<-length(lastret<-diff(log(as.numeric(x[,6]))))
 #dummy<-rep(0,GG)
 ##set standard
-tic='hmsy'
+#tic='hmsy'
 adv<-function(tic,GG){
   print(tic)
   #res<-try(x<-getSymbols(as.character(tic),auto.assign=F,from=date_-21,to=date_))
@@ -120,13 +120,13 @@ adv<-function(tic,GG){
   obj<-as.numeric(Map(function(x) round(x,2) ,obj))
   
   
-  ifelse(adv>=as.numeric(args[2]),return(obj),return(dummy) )
-  #ifelse(adv>=10,return(obj),return(dummy) )
+  #ifelse(adv>=as.numeric(args[2]),return(obj),return(dummy) )
+  ifelse(adv>=10,return(obj),return(dummy) )
   
 }
 
 
-adv('hmsy',GG)
+#adv('hmsy',GG)
 st<-st[order(st$tic),]
 print("Running ADV check $10M $ per day cutoff and last return")
 #if(!missing(ticlist)){st<-st[st$tic %in% ticlist ,]}
@@ -147,7 +147,9 @@ setkey(x1,tic)
 #colnames(x1)<-c('ret1','ret3','ret5','advratio1','advratio3','advratio5','tic')
 st1<-merge(st,x1)
 head(st1)
+st1<-st1[,-c(grep("Sector",colnames(st1)),grep("Industry",colnames(st1))),with=FALSE]
 st2<-st1[complete.cases(st1),]
+
 
 rank<-data.table(scale(st2[,c('X1','X2','X3','X4','X5','X6'),with=FALSE]))
 rank[rank>2]<- 2
